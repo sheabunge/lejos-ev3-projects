@@ -16,6 +16,7 @@ import lejos.hardware.port.MotorPort;
 import lejos.robotics.RegulatedMotor;
 import lejos.utility.Delay;
 import shea.ev3.utils.FileAccess;
+import shea.ev3.utils.LEDLights;
 
 /**
  * Scribble pad game
@@ -39,7 +40,7 @@ public class ScribblePad {
 	private RegulatedMotor motorX, motorY;
 
 	/**
-	 * The last tacho meter X and Y position
+	 * The last tachometer X and Y position
 	 * Used to check if they have been changed
 	 */
 	private int lastTachoX, lastTachoY;
@@ -67,6 +68,7 @@ public class ScribblePad {
 
 		// initialize pad variables
 		resetPad();
+
 		// clear the display
 		LCD.clear();
 	}
@@ -251,7 +253,7 @@ public class ScribblePad {
 	 */
 	public static void main(String[] args) {
 		final LED led = BrickFinder.getLocal().getLED();
-		led.setPattern(2); // red
+		led.setPattern(LEDLights.RED);
 		LCD.drawString("Please wait...", 0, 0);
 
 		// Initialize class
@@ -260,7 +262,7 @@ public class ScribblePad {
 		ScribblePad pad = new ScribblePad(leftMotor, rightMotor);
 
 		// Attempt to load points from file
-		led.setPattern(3); // orange
+		led.setPattern(LEDLights.ORANGE);
 		FileAccess saveFile = new FileAccess("scribblepad.csv");
 		if (saveFile.fileExists()) {
 			LCD.clear();
@@ -268,10 +270,10 @@ public class ScribblePad {
 		}
 
 		// set timer to turn off light
-		led.setPattern(1);
+		led.setPattern(LEDLights.GREEN);
 		Thread t = new Thread(new Runnable() { @Override public void run() {
 			Delay.msDelay(1000);
-			led.setPattern(0);
+			led.setPattern(LEDLights.OFF);
 		}});
 		t.start();
 

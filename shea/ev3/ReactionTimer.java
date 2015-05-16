@@ -6,7 +6,7 @@ import lejos.hardware.BrickFinder;
 import lejos.hardware.Button;
 import lejos.hardware.LED;
 import lejos.hardware.lcd.LCD;
-import lejos.hardware.port.Port;
+import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3TouchSensor;
 import lejos.robotics.TouchAdapter;
 import lejos.utility.Delay;
@@ -144,8 +144,7 @@ class ReactionTimer {
 	public static void main(String[] args) {
 
 		// set up touch sensor
-		final Port s3 = BrickFinder.getDefault().getPort("S3");
-		final EV3TouchSensor touchSensor = new EV3TouchSensor(s3);
+		final EV3TouchSensor touchSensor = new EV3TouchSensor(SensorPort.S3);
 		TouchAdapter touch = new TouchAdapter(touchSensor);
 
 		// watch for exit key
