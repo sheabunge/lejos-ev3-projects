@@ -97,16 +97,22 @@ public class Pong {
 		}
 	}
 
+	/**
+	 * Clear objects from the screen
+	 */
 	public void clearScreen() {
 		drawScreen(GraphicsLCD.WHITE);
 	}
 
+	/**
+	 * Draw objects on the screen
+	 */
 	public void drawScreen() {
 		drawScreen(GraphicsLCD.BLACK);
 	}
 
 	/**
-	 * Draw on the LCD screen
+	 * Draw objects on the screen in a specified color
 	 */
 	public void drawScreen(int color) {
 		g.setColor(color);

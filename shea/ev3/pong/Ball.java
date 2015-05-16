@@ -1,6 +1,3 @@
-/**
- *
- */
 package shea.ev3.pong;
 
 import lejos.hardware.lcd.GraphicsLCD;

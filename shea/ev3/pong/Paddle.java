@@ -10,15 +10,45 @@ import lejos.robotics.RegulatedMotor;
  * @author shea
  */
 public class Paddle {
+
+	/**
+	 * Motor controller
+	 */
 	private RegulatedMotor control;
+
+	/**
+	 * Stores the initial, current and previous tacho counts
+	 */
 	private int initTacho, currentTacho, prevTacho;
 
+	/**
+	 * Stores the paddle Y position
+	 */
 	private int y;
+
+	/**
+	 * Stores the constant paddle X position
+	 */
 	private final int x;
 
+	/**
+	 * The height of the paddle
+	 */
 	final static int HEIGHT = SCREEN_HEIGHT/4;
+
+	/**
+	 * The width of the paddle
+	 */
 	final static int WIDTH = 1;
+
+	/**
+	 * The minimum movement boundary of the paddle
+	 */
 	final static int MIN = 0;
+
+	/**
+	 * The maximum movement boundry of the paddle
+	 */
 	final static int MAX = SCREEN_HEIGHT - HEIGHT;
 
 	/**
@@ -41,7 +71,7 @@ public class Paddle {
 	public void update() {
 		currentTacho = control.getTachoCount() - initTacho;
 
-		// only update if tacho position has changed
+		// only update if tachometer position has changed
 		if (currentTacho == prevTacho) return;
 
 		// calculate the new paddle position
@@ -51,14 +81,22 @@ public class Paddle {
 		if (y < MIN) y = MIN;
 		if (y > MAX) y = MAX;
 
-		// update previous tacho
+		// update previous tachometer value
 		prevTacho = currentTacho;
 	}
 
+	/**
+	 * Draw the paddle on the LCD screen
+	 * @param g a GraphicsLCD object
+	 */
 	public void draw(GraphicsLCD g) {
 		g.drawRect(x, y, WIDTH, HEIGHT);
 	}
 
+	/**
+	 * Retrieve the paddle Y position
+	 * @return
+	 */
 	public int getPos() {
 		return y;
 	}

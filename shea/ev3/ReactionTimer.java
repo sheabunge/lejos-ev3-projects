@@ -2,7 +2,6 @@ package shea.ev3;
 
 import java.util.Random;
 
-import shea.ev3.utils.FileAccess;
 import lejos.hardware.BrickFinder;
 import lejos.hardware.Button;
 import lejos.hardware.LED;
@@ -12,14 +11,37 @@ import lejos.hardware.sensor.EV3TouchSensor;
 import lejos.robotics.TouchAdapter;
 import lejos.utility.Delay;
 import lejos.utility.Stopwatch;
+import shea.ev3.utils.FileAccess;
 
+/**
+ * Game to measure a user's reaction time
+ * @author shea
+ */
 class ReactionTimer {
+
+	/**
+	 * Random number generator
+	 */
 	private static Random rand = new Random();
 
+	/**
+	 * Stopwatch timer
+	 */
 	private Stopwatch timer = new Stopwatch();
+
+	/**
+	 * EV3 LED lights
+	 */
 	private LED led = BrickFinder.getLocal().getLED();
+
+	/**
+	 * Touch sensor
+	 */
 	private TouchAdapter touch;
 
+	/**
+	 * The time it took the user to react
+	 */
 	private int reactionTime;
 
 	/**
@@ -38,6 +60,9 @@ class ReactionTimer {
 		return rand.nextInt(5000) + 3000;
 	}
 
+	/**
+	 * Run the game
+	 */
 	public void run() {
 		//		displayWelcome();
 
@@ -66,7 +91,11 @@ class ReactionTimer {
 		displayResults();
 	}
 
-	void displayWelcome() {
+	/**
+	 * Display a welcome message
+	 */
+	@SuppressWarnings("unused")
+	private void displayWelcome() {
 		LCD.clear();
 		LCD.drawString("Press any button", 1, 0);
 		LCD.drawString("to start", 4, 1);
@@ -75,7 +104,10 @@ class ReactionTimer {
 		LCD.drawString("Get ready...", 3, 3);
 	}
 
-	void displayResults() {
+	/**
+	 * Display the user's results on the LCD screen
+	 */
+	private void displayResults() {
 		LCD.clear();
 		LCD.drawString("Your time:", 0, 1);
 		LCD.drawString(reactionTime + " ms", 0, 2);
@@ -85,6 +117,10 @@ class ReactionTimer {
 		LCD.drawString(bestTime + " ms", 0, 5);
 	}
 
+	/**
+	 * Retrieve the best reaction time from a file saved in storage
+	 * @return
+	 */
 	public int getBestTime() {
 		FileAccess file = new FileAccess("reaction_time.txt");
 
@@ -100,6 +136,10 @@ class ReactionTimer {
 	}
 
 
+	/**
+	 * Main method
+	 * @param args arguments passed to the program
+	 */
 	public static void main(String[] args) {
 
 		// set up touch sensor

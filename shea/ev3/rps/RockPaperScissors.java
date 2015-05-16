@@ -23,9 +23,13 @@ public class RockPaperScissors {
 	private final Brick ev3 = BrickFinder.getDefault();
 
 	/**
-	 * Touch sensors and abstractions
+	 * Touch sensor objects
 	 */
 	private AnalogSensor[] touchSensors = new AnalogSensor[3];
+
+	/**
+	 * Abstracts the touch sensor class and makes it easier to use
+	 */
 	private TouchAdapter[] buttons = new TouchAdapter[3];
 
 	/**

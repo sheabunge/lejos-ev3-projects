@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Convenience class for reading and writing data to files on the EV3
  * @author shea
- *
  */
 public class FileAccess {
 
@@ -28,16 +28,27 @@ public class FileAccess {
 	 */
 	private File file;
 
+	/**
+	 * Constructor
+	 * @param filename the file's name
+	 */
 	public FileAccess(String filename) {
 		this.filename = filename;
 		path = Paths.get(filename);
 		file = new File(filename);
 	}
 
+	/**
+	 * Check if the file exists
+	 * @return boolean true if exists, false if not
+	 */
 	public boolean fileExists() {
 		return file.exists();
 	}
 
+	/**
+	 * Deletes a file if it exists
+	 */
 	public void delete() {
 		try {
 			Files.deleteIfExists(path);
@@ -46,6 +57,9 @@ public class FileAccess {
 		}
 	}
 
+	/**
+	 * Creates a new empty file, unless it already exists
+	 */
 	public void create() {
 		try {
 			Files.createFile(path);
@@ -54,12 +68,10 @@ public class FileAccess {
 		}
 	}
 
-	public void writeData(List<String> list) {
-		String[] data = new String[list.size()];
-		list.toArray(data);
-		writeData(data);
-	}
-
+	/**
+	 * Writes a String of data to a file
+	 * @param data the data to write
+	 */
 	public void write(String data) {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
 			if (! file.exists()) {
@@ -72,6 +84,22 @@ public class FileAccess {
 		}
 	}
 
+	/**
+	 * Writes data from a List of Strings to a file.
+	 * Each List element forms a separate line
+	 * @param list the data to write.
+	 */
+	public void writeData(List<String> list) {
+		String[] data = new String[list.size()];
+		list.toArray(data);
+		writeData(data);
+	}
+
+	/**
+	 * Writes an array of String data to a file.
+	 * Each array element forms a separate line
+	 * @param data the data to write
+	 */
 	public void writeData(String[] data) {
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
 			if (! file.exists()) {
@@ -88,6 +116,10 @@ public class FileAccess {
 		}
 	}
 
+	/**
+	 * Reads data from a file to a List
+	 * @return the retrieved data, with each List element representing a line in the file
+	 */
 	public List<String> readData() {
 		List<String> data = new ArrayList<>();
 

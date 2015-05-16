@@ -1,6 +1,3 @@
-/**
- *
- */
 package shea.ev3.rps;
 
 import java.util.Random;
@@ -8,11 +5,10 @@ import java.util.Random;
 import lejos.hardware.Button;
 import lejos.hardware.lcd.LCD;
 import lejos.utility.Delay;
-import shea.ev3.utils.LCDUtils;
+import shea.ev3.utils.TextUtils;
 
 /**
  * @author shea
- *
  */
 public class RPS implements Runnable {
 
@@ -44,21 +40,24 @@ public class RPS implements Runnable {
 		this.control = control;
 	}
 
+	/**
+	 * Count down on the LCD screen
+	 */
 	public void countdown() {
 		long delay = 1500;
 		LCD.clear();
 		Delay.msDelay(delay);
 
-		LCDUtils.drawString("Rock", 1);
+		TextUtils.drawString("Rock", 1);
 		Delay.msDelay(delay);
 
-		LCDUtils.drawString("Paper", 3);
+		TextUtils.drawString("Paper", 3);
 		Delay.msDelay(delay);
 
-		LCDUtils.drawString("Scissors", 5);
+		TextUtils.drawString("Scissors", 5);
 		Delay.msDelay(delay);
 
-		LCDUtils.drawString("GO!", 7);
+		TextUtils.drawString("GO!", 7);
 	}
 
 	/**

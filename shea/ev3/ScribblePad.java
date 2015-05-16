@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import shea.ev3.utils.FileAccess;
 import lejos.hardware.BrickFinder;
 import lejos.hardware.Button;
 import lejos.hardware.LED;
@@ -16,10 +15,11 @@ import lejos.hardware.motor.NXTRegulatedMotor;
 import lejos.hardware.port.MotorPort;
 import lejos.robotics.RegulatedMotor;
 import lejos.utility.Delay;
+import shea.ev3.utils.FileAccess;
 
 /**
- *
- * @author Shea Bunge
+ * Scribble pad game
+ * @author shea
  */
 public class ScribblePad {
 
@@ -108,7 +108,7 @@ public class ScribblePad {
 	}
 
 	/**
-	 * Check tacho position and update the point
+	 * Check tachometer position and update the point
 	 */
 	private void checkTacho() {
 		int tachoX = motorX.getTachoCount();
