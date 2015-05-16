@@ -12,6 +12,7 @@ import lejos.robotics.TouchAdapter;
 import lejos.utility.Delay;
 import lejos.utility.Stopwatch;
 import shea.ev3.utils.FileAccess;
+import shea.ev3.utils.TextUtils;
 
 /**
  * Game to measure a user's reaction time
@@ -97,11 +98,11 @@ class ReactionTimer {
 	@SuppressWarnings("unused")
 	private void displayWelcome() {
 		LCD.clear();
-		LCD.drawString("Press any button", 1, 0);
-		LCD.drawString("to start", 4, 1);
+		TextUtils.drawString("Press any button", 0);
+		TextUtils.drawString("to start", 1);
 		Button.waitForAnyPress();
 
-		LCD.drawString("Get ready...", 3, 3);
+		TextUtils.drawString("Get ready...", 3);
 	}
 
 	/**
@@ -109,12 +110,12 @@ class ReactionTimer {
 	 */
 	private void displayResults() {
 		LCD.clear();
-		LCD.drawString("Your time:", 0, 1);
-		LCD.drawString(reactionTime + " ms", 0, 2);
+		TextUtils.drawString("Your time:", 1);
+		TextUtils.drawString(reactionTime + " ms", 2);
 
 		int bestTime = getBestTime();
-		LCD.drawString("Best time:", 0, 4);
-		LCD.drawString(bestTime + " ms", 0, 5);
+		TextUtils.drawString("Best time:", 4);
+		TextUtils.drawString(bestTime + " ms", 5);
 	}
 
 	/**
