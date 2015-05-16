@@ -1,0 +1,7 @@
+# Exclude compiled code
+*.class
+*.jar
+/build/
+
+# Exclude testing classes
+/shea/ev3/test
