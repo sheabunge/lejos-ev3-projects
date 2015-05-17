@@ -47,7 +47,7 @@ public class Paddle {
 	final static int MIN = 0;
 
 	/**
-	 * The maximum movement boundry of the paddle
+	 * The maximum movement boundary of the paddle
 	 */
 	final static int MAX = SCREEN_HEIGHT - HEIGHT;
 
