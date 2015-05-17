@@ -32,9 +32,9 @@ public class Pong {
 	 */
 	private int playerOneScore = 0, playerTwoScore = 0;
 
-	Brick ev3 = BrickFinder.getDefault();
-	GraphicsLCD g = ev3.getGraphicsLCD();
-	TextLCD t = ev3.getTextLCD();
+	final Brick ev3 = BrickFinder.getDefault();
+	final GraphicsLCD g = ev3.getGraphicsLCD();
+	final TextLCD t = ev3.getTextLCD();
 
 	/**
 	 * Constructor
